@@ -12,15 +12,56 @@
 
     <div class="container">
 
+        <!-- Heading -->
         <h1>🎵 MoodTunes</h1>
 
         <p class="subtitle">
             Find music that matches your mood.
         </p>
 
+        <!-- Theme Button -->
+        <button id="themeBtn">🌙 Dark Mode</button>
+
+        <!-- Mood Input -->
         <div class="mood-section">
 
-            <h2>Choose Your Mood</h2>
+            <h2>Tell us how you feel</h2>
+
+            <input
+                type="text"
+                id="moodInput"
+                placeholder="Example: I feel happy today">
+
+            <button id="findMood">
+                🔍 Find My Mood
+            </button>
+
+            <button id="voiceBtn">
+                🎤 Speak
+            </button>
+
+        </div>
+
+        <!-- Search Song -->
+        <div class="card">
+
+            <h2>🔍 Search Song</h2>
+
+            <input
+                type="text"
+                id="searchSong"
+                placeholder="Search a song...">
+
+            <button id="searchBtn">
+                Search
+            </button>
+
+        </div>
+
+        <!-- Mood Buttons -->
+        <div class="mood-section">
+
+            <h2>Or Choose Your Mood</h2>
 
             <div class="mood-buttons">
 
@@ -37,30 +78,36 @@
 
         <!-- Recommended Songs -->
         <div class="card">
-            <h2>🎶 Recommended Songs</h2>
+
+            <h2>🎵 Recommended Songs</h2>
 
             <ul id="songList">
                 <li>Your songs will appear here.</li>
             </ul>
+
         </div>
 
         <!-- Quote -->
         <div class="card">
+
             <h2>💬 Quote of the Day</h2>
 
             <p id="quote">
                 Every day is a fresh start.
             </p>
+
         </div>
 
         <!-- Wallpaper -->
         <div class="card">
+
             <h2>🖼️ Mood Wallpaper</h2>
 
             <img
                 id="wallpaper"
                 src="https://picsum.photos/id/1025/900/400"
                 alt="Mood Wallpaper">
+
         </div>
 
     </div>

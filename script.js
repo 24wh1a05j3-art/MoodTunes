@@ -91,5 +91,149 @@ buttons.forEach(button => {
         document.getElementById("wallpaper").src = data.wallpaper;
 
     });
+    document.getElementById("findMood").addEventListener("click", () => {
+
+    const text = document
+        .getElementById("moodInput")
+        .value
+        .toLowerCase();
+
+    if (text.includes("happy")) {
+
+        showMood("Happy");
+
+    } else if (text.includes("sad")) {
+
+        showMood("Sad");
+
+    } else if (text.includes("love")) {
+
+        showMood("Love");
+
+    } else if (text.includes("relax")) {
+
+        showMood("Relaxed");
+
+    } else if (text.includes("energy") || text.includes("excited")) {
+
+        showMood("Energetic");
+
+    } else if (text.includes("angry")) {
+
+        showMood("Angry");
+
+    } else {
+
+        alert("Mood not recognized. Try words like happy, sad, love, relaxed, energetic or angry.");
+
+    }
+
+});
+
+function showMood(mood){
+
+    const data = moodData[mood];
+
+    const songList = document.getElementById("songList");
+
+    songList.innerHTML = "";
+
+    data.songs.forEach(song=>{
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+<a target="_blank"
+href="https://www.youtube.com/results?search_query=${encodeURIComponent(song)}">
+🎵 ${song}
+</a>
+
+<button class="favBtn">
+❤️
+</button>
+`;
+
+        songList.appendChild(li);
+
+    });
+
+    document.getElementById("quote").innerText = data.quote;
+
+    document.getElementById("wallpaper").src = data.wallpaper;
+
+}
+document.addEventListener("click",function(e){
+
+    if(e.target.classList.contains("favBtn")){
+
+        const song=e.target.previousElementSibling.innerText;
+
+        let favs=JSON.parse(localStorage.getItem("favorites")) || [];
+
+        if(!favs.includes(song)){
+
+            favs.push(song);
+
+            localStorage.setItem("favorites",JSON.stringify(favs));
+
+            alert("Song Added to Favorites ❤️");
+
+        }
+
+    }
+
+});
+document.getElementById("searchBtn").addEventListener("click",()=>{
+
+    const song=document.getElementById("searchSong").value;
+
+    window.open(
+
+"https://www.youtube.com/results?search_query="+encodeURIComponent(song),
+
+"_blank"
+
+);
+
+});
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+
+        themeBtn.innerText="☀️ Light Mode";
+
+    }else{
+
+        themeBtn.innerText="🌙 Dark Mode";
+
+    }
+
+});
+const recognition = new webkitSpeechRecognition();
+
+recognition.lang = "en-US";
+
+voiceBtn.onclick = () => {
+
+    recognition.start();
+
+};
+
+recognition.onresult = function(event){
+
+    moodInput.value = event.results[0][0].transcript;
+
+};
+
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+history.push(mood);
+
+localStorage.setItem("history",JSON.stringify(history));
+
 
 });

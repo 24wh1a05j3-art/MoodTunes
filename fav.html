@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Favorites</title>
+
+<style>
+
+body{
+
+font-family:Arial;
+
+padding:40px;
+
+background:#f5f5f5;
+
+}
+
+li{
+
+margin:15px;
+
+font-size:20px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>❤️ Favorite Songs</h1>
+
+<ul id="list"></ul>
+
+<script>
+
+const favs=JSON.parse(localStorage.getItem("favorites")) || [];
+
+const list=document.getElementById("list");
+
+favs.forEach(song=>{
+
+const li=document.createElement("li");
+
+li.innerText=song;
+
+list.appendChild(li);
+
+});
+
+</script>
+
+</body>
+
+</html>
