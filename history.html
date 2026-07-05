@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Mood History</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📜 Mood History</h1>
+
+<ul id="historyList"></ul>
+
+<br>
+
+<a href="index.html">
+
+<button>⬅ Back</button>
+
+</a>
+
+</div>
+
+<script>
+
+let history =
+JSON.parse(localStorage.getItem("history")) || [];
+
+const list =
+document.getElementById("historyList");
+
+if(history.length==0){
+
+list.innerHTML="<li>No Mood History Yet.</li>";
+
+}
+
+history.forEach(mood=>{
+
+const li=document.createElement("li");
+
+li.innerHTML="😊 "+mood;
+
+list.appendChild(li);
+
+});
+
+</script>
+
+</body>
+
+</html>

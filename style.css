@@ -308,5 +308,46 @@ h1{
         height:180px;
 
     }
+    #favoritePage{
+    margin:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff4081;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
 
+#favoritePage:hover{
+    background:#d81b60;
+}
+#historyBtn{
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:30px;
+
+background:#28a745;
+
+color:white;
+
+cursor:pointer;
+
+margin:10px;
+
+font-size:18px;
+
+transition:.3s;
+
+}
+
+#historyBtn:hover{
+
+background:#1e7e34;
+
+}
 }

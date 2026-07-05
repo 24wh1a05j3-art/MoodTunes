@@ -1,11 +1,12 @@
- console.log("MoodTunes Started");
+console.log("MoodTunes Started");
 
 const moodData = {
+
     Happy: {
         songs: [
-            "Happy - Pharrell Williams",
-            "Can't Stop The Feeling",
-            "Good Life"
+            "Butta Bomma",
+            "Ramuloo Ramulaa",
+            "Mind Block"
         ],
         quote: "Happiness is contagious. Keep smiling!",
         wallpaper: "https://picsum.photos/id/1025/900/400"
@@ -13,9 +14,9 @@ const moodData = {
 
     Sad: {
         songs: [
-            "Someone Like You",
-            "Fix You",
-            "Let Her Go"
+            "Adiga Adiga",
+            "Nee Kannu Neeli Samudram",
+            "Samajavaragamana Sad Version"
         ],
         quote: "Every storm eventually runs out of rain.",
         wallpaper: "https://picsum.photos/id/1018/900/400"
@@ -23,9 +24,9 @@ const moodData = {
 
     Love: {
         songs: [
-            "Perfect",
-            "All Of Me",
-            "Until I Found You"
+            "Inthandham",
+            "Samajavaragamana",
+            "Nee Kannu Neeli Samudram"
         ],
         quote: "Love is the music of the heart.",
         wallpaper: "https://picsum.photos/id/1067/900/400"
@@ -33,9 +34,9 @@ const moodData = {
 
     Relaxed: {
         songs: [
-            "Weightless",
-            "Sunset Lover",
-            "Bloom"
+            "Life of Ram Telugu",
+            "Vintunnava",
+            "Oohale"
         ],
         quote: "Relax. Recharge. Repeat.",
         wallpaper: "https://picsum.photos/id/1015/900/400"
@@ -43,9 +44,9 @@ const moodData = {
 
     Energetic: {
         songs: [
-            "Believer",
-            "Thunder",
-            "Stronger"
+            "Saami Saami",
+            "Top Lesi Poddi",
+            "Blockbuster"
         ],
         quote: "Energy flows where attention goes.",
         wallpaper: "https://picsum.photos/id/1043/900/400"
@@ -53,14 +54,17 @@ const moodData = {
 
     Angry: {
         songs: [
-            "Numb",
-            "In The End",
-            "Whatever It Takes"
+            "Pushpa Title Song",
+            "Dhruva Dhruva",
+            "Baitikochi Chuste"
         ],
         quote: "Turn your anger into motivation.",
         wallpaper: "https://picsum.photos/id/1003/900/400"
     }
+
 };
+
+// Mood Buttons
 
 const buttons = document.querySelectorAll(".mood-buttons button");
 
@@ -70,65 +74,13 @@ buttons.forEach(button => {
 
         const mood = button.innerText.split(" ")[1];
 
-        const data = moodData[mood];
-
-        const songList = document.getElementById("songList");
-
-        songList.innerHTML = "";
-
-        data.songs.forEach(song => {
-
-            const li = document.createElement("li");
-
-            li.textContent = "🎵 " + song;
-
-            songList.appendChild(li);
-
-        });
-
-        document.getElementById("quote").innerText = data.quote;
-
-        document.getElementById("wallpaper").src = data.wallpaper;
+        showMood(mood);
 
     });
-    document.getElementById("findMood").addEventListener("click", () => {
-
-    const text = document
-        .getElementById("moodInput")
-        .value
-        .toLowerCase();
-
-    if (text.includes("happy")) {
-
-        showMood("Happy");
-
-    } else if (text.includes("sad")) {
-
-        showMood("Sad");
-
-    } else if (text.includes("love")) {
-
-        showMood("Love");
-
-    } else if (text.includes("relax")) {
-
-        showMood("Relaxed");
-
-    } else if (text.includes("energy") || text.includes("excited")) {
-
-        showMood("Energetic");
-
-    } else if (text.includes("angry")) {
-
-        showMood("Angry");
-
-    } else {
-
-        alert("Mood not recognized. Try words like happy, sad, love, relaxed, energetic or angry.");
-
-    }
 
 });
+
+// Show Mood
 
 function showMood(mood){
 
@@ -143,15 +95,13 @@ function showMood(mood){
         const li = document.createElement("li");
 
         li.innerHTML = `
-<a target="_blank"
-href="https://www.youtube.com/results?search_query=${encodeURIComponent(song)}">
-🎵 ${song}
-</a>
+        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(song + " Telugu Song")}"
+        target="_blank">
+            🎵 ${song}
+        </a>
 
-<button class="favBtn">
-❤️
-</button>
-`;
+        <button class="favBtn">❤️</button>
+        `;
 
         songList.appendChild(li);
 
@@ -161,7 +111,65 @@ href="https://www.youtube.com/results?search_query=${encodeURIComponent(song)}">
 
     document.getElementById("wallpaper").src = data.wallpaper;
 
+    // Save History
+
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+
+    history.push(mood);
+
+    localStorage.setItem("history", JSON.stringify(history));
+
 }
+
+// AI Mood Detection
+
+document.getElementById("findMood").addEventListener("click",()=>{
+
+    const text=document
+    .getElementById("moodInput")
+    .value
+    .toLowerCase();
+
+    if(text.includes("happy")){
+
+        showMood("Happy");
+
+    }
+    else if(text.includes("sad")){
+
+        showMood("Sad");
+
+    }
+    else if(text.includes("love")){
+
+        showMood("Love");
+
+    }
+    else if(text.includes("relax")){
+
+        showMood("Relaxed");
+
+    }
+    else if(text.includes("energy") || text.includes("excited")){
+
+        showMood("Energetic");
+
+    }
+    else if(text.includes("angry")){
+
+        showMood("Angry");
+
+    }
+    else{
+
+        alert("Mood not recognized. Try Happy, Sad, Love, Relaxed, Energetic or Angry.");
+
+    }
+
+});
+
+// Favorites
+
 document.addEventListener("click",function(e){
 
     if(e.target.classList.contains("favBtn")){
@@ -176,29 +184,44 @@ document.addEventListener("click",function(e){
 
             localStorage.setItem("favorites",JSON.stringify(favs));
 
-            alert("Song Added to Favorites ❤️");
+            alert("❤️ Song Added to Favorites");
+
+        }else{
+
+            alert("Already in Favorites");
 
         }
 
     }
 
 });
+
+// Search Song
+
 document.getElementById("searchBtn").addEventListener("click",()=>{
 
     const song=document.getElementById("searchSong").value;
 
+    if(song.trim()==""){
+
+        alert("Enter a song name");
+
+        return;
+
+    }
+
     window.open(
-
-"https://www.youtube.com/results?search_query="+encodeURIComponent(song),
-
-"_blank"
-
-);
+        "https://www.youtube.com/results?search_query="+encodeURIComponent(song+" Telugu Song"),
+        "_blank"
+    );
 
 });
-const themeBtn = document.getElementById("themeBtn");
 
-themeBtn.addEventListener("click", () => {
+// Dark Mode
+
+const themeBtn=document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click",()=>{
 
     document.body.classList.toggle("dark");
 
@@ -213,27 +236,29 @@ themeBtn.addEventListener("click", () => {
     }
 
 });
-const recognition = new webkitSpeechRecognition();
 
-recognition.lang = "en-US";
+// Voice Input
 
-voiceBtn.onclick = () => {
+if("webkitSpeechRecognition" in window){
 
-    recognition.start();
+    const recognition=new webkitSpeechRecognition();
 
-};
+    recognition.lang="en-US";
 
-recognition.onresult = function(event){
+    document.getElementById("voiceBtn").onclick=()=>{
 
-    moodInput.value = event.results[0][0].transcript;
+        recognition.start();
 
-};
+    };
 
-let history = JSON.parse(localStorage.getItem("history")) || [];
+    recognition.onresult=function(event){
 
-history.push(mood);
+        document.getElementById("moodInput").value=event.results[0][0].transcript;
 
-localStorage.setItem("history",JSON.stringify(history));
+    };
 
+}else{
 
-});
+    document.getElementById("voiceBtn").style.display="none";
+
+}

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoodTunes</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,10 +20,10 @@
             Find music that matches your mood.
         </p>
 
-        <!-- Theme Button -->
+        <!-- Dark Mode -->
         <button id="themeBtn">🌙 Dark Mode</button>
 
-        <!-- Mood Input -->
+        <!-- AI Mood Input -->
         <div class="mood-section">
 
             <h2>Tell us how you feel</h2>
@@ -42,7 +43,24 @@
 
         </div>
 
+        <br>
+
+        <!-- Navigation Buttons -->
+
+        <a href="favorites.html">
+            <button id="favoritePage">
+                ❤️ Favorites
+            </button>
+        </a>
+
+        <a href="history.html">
+            <button id="historyBtn">
+                📜 Mood History
+            </button>
+        </a>
+
         <!-- Search Song -->
+
         <div class="card">
 
             <h2>🔍 Search Song</h2>
@@ -50,7 +68,7 @@
             <input
                 type="text"
                 id="searchSong"
-                placeholder="Search a song...">
+                placeholder="Search any song...">
 
             <button id="searchBtn">
                 Search
@@ -59,10 +77,12 @@
         </div>
 
         <!-- Mood Buttons -->
+
         <div class="mood-section">
 
             <h2>Or Choose Your Mood</h2>
 
+          
             <div class="mood-buttons">
 
                 <button>😊 Happy</button>
@@ -77,28 +97,35 @@
         </div>
 
         <!-- Recommended Songs -->
+
         <div class="card">
 
             <h2>🎵 Recommended Songs</h2>
 
             <ul id="songList">
-                <li>Your songs will appear here.</li>
+
+                <li>Select a mood to see songs.</li>
+
             </ul>
 
         </div>
 
         <!-- Quote -->
+
         <div class="card">
 
             <h2>💬 Quote of the Day</h2>
 
             <p id="quote">
+
                 Every day is a fresh start.
+
             </p>
 
         </div>
 
         <!-- Wallpaper -->
+
         <div class="card">
 
             <h2>🖼️ Mood Wallpaper</h2>
